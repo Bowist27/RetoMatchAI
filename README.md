@@ -10,15 +10,18 @@ El objetivo es preparar los datos para un análisis posterior que permita identi
 ## 1. Extracción
 - Se cargó el dataset `MXvideos` desde Kaggle/Google Sheets utilizando pandas.  
 - El dataset contiene **40,451 filas y 16 columnas** con información sobre videos en tendencia en México.  
-- Variables incluidas: título, canal, categoría, fecha de publicación, etiquetas, vistas, likes, dislikes, número de comentarios, entre otras.  
-- Se realizó una revisión inicial de dimensiones (`shape`), estructura (`info`) y estadísticas descriptivas (`describe`).  
+- Decidimos cargar el Dataset en una hoja en Google Sheets para mantener trazabilidad sin descargas manuales del archivo.
+- Se realizó una revisión inicial de dimensiones (`shape`), estructura (`info`) y estadísticas descriptivas (`describe`), analizamos las variables que si podiamos usar y cuales no serian para nuestro provecho.  
 
 ---
 
 ## 2. Limpieza de datos
 Acciones realizadas:
-- **Duplicados**: se detectaron videos repetidos (`video_id`) y se conservaron solo las instancias con mayor número de vistas.  
-- **Columnas eliminadas**: se descartaron columnas irrelevantes para el análisis (`video_id`, `title`, `channel_title`, `tags`, `description`, `thumbnail_link`).  
+- **Duplicados**: se detectaron videos repetidos (`video_id`), investigamos el porque estos aparecian así, decidimos quedarnos de esos videos repetidos con la fila con más vistas (representa el impacto máximo del video). 
+
+
+- **Columnas eliminadas**: se descartaron columnas irrelevantes para el análisis (`video_id`, `title`, `channel_title`, `tags`, `description`, `thumbnail_link`). Algunos de estos aptos para un análisis categórico pero no de regresión.
+
 - **Valores nulos**: se contabilizaron los valores faltantes en cada columna.  
 - **Valores negativos**: se verificó que no hubiera métricas con valores inválidos en columnas numéricas.  
 
