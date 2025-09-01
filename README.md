@@ -17,21 +17,17 @@ El objetivo es preparar los datos para un análisis posterior que permita identi
 
 ## 2. Limpieza de datos
 Acciones realizadas:
-- **Duplicados**: se detectaron videos repetidos (`video_id`), investigamos el porque estos aparecian así, decidimos quedarnos de esos videos repetidos con la fila con más vistas (representa el impacto máximo del video). 
+- **Duplicados**: se detectaron videos repetidos (`video_id`), investigamos por qué estos aparecían así, y decidimos quedarnos con la fila con más vistas (representa el impacto máximo del video). 
 
 
-- **Columnas eliminadas**: se descartaron columnas irrelevantes para el análisis (`video_id`, `title`, `channel_title`, `tags`, `description`, `thumbnail_link`). Algunos de estos aptos para un análisis categórico pero no de regresión.
+- **Columnas eliminadas**: se descartaron columnas irrelevantes para el análisis (`video_id`, `title`, `channel_title`, `tags`, `description`, `thumbnail_link`). Algunos de estos aptos para un análisis categórico pero no de regresión. Consideramos que no valía la pena hacer un hot encoding ya que son valores únicos para cada fila.
 
 - **Valores nulos**: se contabilizaron los valores faltantes en cada columna.  
-- **Valores negativos**: se verificó que no hubiera métricas con valores inválidos en columnas numéricas.  
+- **Valores negativos**: se verificó que no hubiera métricas con valores inválidos en columnas numéricas.   
 
 Pendiente por mejorar:
-- Manejo de valores nulos en `description`.  
-- Reemplazo de `"[none]"` en `tags`.  
 - Conversión de fechas a tipo `datetime` (`trending_date`, `publish_time`).  
-- Validación de consistencia lógica (ejemplo: si `comments_disabled=True`, entonces `comment_count` debe ser 0).  
-
----
+- Validación de consistencia lógica (ejemplo: si `comments_disabled=True`, entonces `comment_count` debe ser 0).
 
 ## 3. Transformación de variables
 Acciones realizadas:
@@ -41,7 +37,7 @@ Acciones realizadas:
 - Visualización de `engagement_rate` promedio por categoría mediante gráfico de barras.  
 - Exploración de correlaciones entre variables numéricas con un scatter matrix.  
 
-Pendiente por mejorar:
+Posibles mejoras:
 - Extraer variables temporales: año, mes, día, hora de `publish_time`.  
 - Crear nuevas métricas:  
   - `likes_ratio` = likes / (likes + dislikes).  
