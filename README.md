@@ -1,5 +1,11 @@
 # RetoMatchAI
 
+## Equipo
+- A01710550 - Maxime Vilcocq Parra
+- A01710791 - Galo Alejandro del Rio Viggiano
+- A01369687 - Ana Karen Toscano Díaz
+- A01710367 - José Antonio López Saldaña
+
 # Proyecto ETL - YouTube México Trending Videos
 
 La primera parte de este reto/ proyecto consiste en seguir y aplicar el proceso de **Extracción, Transformación y Limpieza (ETL)** al dataset escogido, en este caso (Videos en tendencia de YouTube México).  
