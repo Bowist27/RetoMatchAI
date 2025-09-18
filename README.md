@@ -71,6 +71,56 @@ Los pasos principales de preprocesamiento fueron:
 6. **Balanceo de clases:**  
    - Se implementó un **WeightedRandomSampler** que asigna mayor probabilidad de muestreo a imágenes con lesiones, evitando que el modelo se sesgue hacia clases mayoritarias.
 
+## Modelo
+
+### Arquitectura del Modelo
+
+El modelo seleccionado para este proyecto es **U-Net++**, una variante mejorada de la **U-Net** clásica, ampliamente utilizada en tareas de segmentación médica. La U-Net original (Ronneberger et al., 2015) introdujo la idea de un **encoder-decoder** con **conexiones de salto (skip connections)**, permitiendo combinar información de bajo y alto nivel para segmentar con precisión estructuras anatómicas.
+
+La **U-Net++** (Zhou et al., 2018) extiende esta idea añadiendo **conexiones densas y convoluciones intermedias** entre capas de codificación y decodificación. Esto reduce la brecha semántica entre características de distinta profundidad y mejora la segmentación en regiones complejas como lesiones pulmonares.
+
+#### Descripción de la Arquitectura
+
+1. **Encoder (contracción):**
+   - Compuesto por una red convolucional preentrenada como backbone (e.g., ResNet34, EfficientNet, o VGG16).  
+   - Cada bloque del encoder aplica:
+     - Convoluciones 2D con kernel de `3x3`, stride `1`, padding `1`.  
+     - Función de activación **ReLU**.  
+     - Normalización por lotes (**BatchNorm**).  
+     - **Max Pooling 2D (2x2, stride 2)** para reducir a la mitad la resolución espacial.  
+
+2. **Decoder (expansión):**
+   - Etapas de **upsampling** mediante interpolación bilineal o transposed convolution (stride 2).  
+   - Concatenación con los mapas de características del encoder (**skip connections**).  
+   - Convoluciones 2D `3x3` + ReLU + BatchNorm para refinar la reconstrucción espacial.  
+
+3. **Conexiones densas (característica de U-Net++):**
+   - Entre cada bloque encoder-decoder, se introducen **convoluciones adicionales** que permiten un refinamiento progresivo de las características antes de fusionarlas.  
+   - Esto evita la discrepancia entre características profundas (semánticas) y superficiales (espaciales).  
+
+4. **Capa de salida:**
+   - Convolución final `1x1` para reducir el número de canales a **4 clases** (fondo, pulmón, dos tipos de lesión).  
+   - Activación **Softmax** para obtener probabilidades por clase en cada píxel.  
+
+#### Esquema Resumido
+
+- **Encoder:** 4 bloques convolucionales + downsampling.  
+- **Decoder:** 4 bloques convolucionales + upsampling.  
+- **Conexiones densas:** entre cada etapa de encoder y decoder.  
+- **Output:** tensor `(N, 4, 256, 256)` donde `N` es el tamaño del batch.  
+
+---
+
+### Justificación de la Selección
+
+- La **U-Net** clásica es un estándar en segmentación médica, validada en múltiples estudios.  
+- La **U-Net++** mejora el rendimiento en datasets desbalanceados y con estructuras poco definidas (como lesiones COVID-19) gracias a sus **skip connections densos**.  
+- El backbone preentrenado (e.g., ResNet34) aprovecha características de redes entrenadas en **ImageNet**, acelerando la convergencia y mejorando la capacidad de generalización.  
+- La combinación de pérdidas **Cross-Entropy + Dice + Focal** permite:  
+  - Penalizar errores de clase mayoritaria/minoritaria.  
+  - Aumentar sensibilidad en lesiones pequeñas.  
+  - Mantener buena segmentación en estructuras más grandes.  
+
 ## Entrenamiento
 
 ### División del Conjunto de Datos
