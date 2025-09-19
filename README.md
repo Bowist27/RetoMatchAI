@@ -124,3 +124,11 @@ En el repositorio del proyecto se documenta la normatividad aplicable al reto y 
 
 - El modelo debe considerarse **un apoyo diagnóstico**, nunca un reemplazo de la decisión médica.  
 - La documentación del repositorio deja explícito el cumplimiento de **GDPR** y **HIPAA**, garantizando transparencia y responsabilidad ética.  
+
+
+---
+
+# Kaggle
+
+Estamos teniendo problemas para guardar las versiones en Kaggle.  
+<img width="1920" height="1200" alt="image" src="https://github.com/user-attachments/assets/f55102dd-d543-49a9-82c3-48bf9ef3a6ab" />
