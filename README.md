@@ -2,13 +2,13 @@
 
 ## Integrantes
 
-- Maxime Vilcoq Parra
+- Maxime Vilcocq Parra A01710550
 
-- Galo del Río Viggiano
+- Galo del Río Viggiano A01710791
 
-- Ana Karen Toscano Díaz
+- Ana Karen Toscano Díaz A01369687
 
-- José Antonio López Saldaña
+- José Antonio López Saldaña A01710367
 
 ## Introducción
 
