@@ -1,5 +1,15 @@
 # Multiclass Lung CT Segmentation – UNet++
 
+## Integrantes
+
+- Maxime Vilcoq Parra
+
+- Galo del Río Viggiano
+
+- Ana Karen Toscano Díaz
+
+- José Antonio López Saldaña
+
 ## Introducción
 
 Este proyecto implementa un modelo de segmentación semántica multiclase en imágenes de tomografía computarizada (TAC) de pulmón, con el objetivo de identificar estructuras y lesiones asociadas a **COVID-19**.  
