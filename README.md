@@ -128,7 +128,7 @@ En el repositorio del proyecto se documenta la normatividad aplicable al reto y 
 
 ---
 
-# Kaggle
+# Kaggle (pendiente)
 
 Estamos teniendo problemas para guardar las versiones en Kaggle.  
 <img width="1920" height="1200" alt="image" src="https://github.com/user-attachments/assets/f55102dd-d543-49a9-82c3-48bf9ef3a6ab" />
